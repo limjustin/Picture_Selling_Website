@@ -33,26 +33,43 @@ Template.ex_modalpicture.events({
     cart_update.push(this._id);
     Session.set('cart', cart_update);
 
-    Meteor.user().profile.cart.forEach(function(_id) {
-      console.log(Session.get('cart')[0])
-      if(Session.get('cart')[0] === _id){
-        console.log("중복됨");
-        break;
-      } else {
-        console.log("중복안됨")
+    var arraycart = Meteor.user().profile.cart;
+
+    // Meteor.user().profile.cart.forEach(function(_id) {
+    //   console.log(Session.get('cart')[0])
+    //   if(Session.get('cart')[0] === _id){
+    //     console.log("중복됨");
+    //     return false;
+    //   } else {
+    //     console.log("중복안됨")
+    //   }
+    //   return false;
+    // })
+
+    var flag = false;
+
+    for(var i=0; i < arraycart.length ; i++) {
+        if(Session.get('cart')[0] === Meteor.user().profile.cart[i]){
+          // console.log("중복됨");
+          flag = true;
+          break;
+        } else {
+          // console.log("중복안됨");
       }
-    })
+    }
+    // console.log(flag);
 
-
-
-    // 장바구니 업데이트
-    Meteor.users.update({_id: userInfo._id}, {
-      $push: { // $set은 기존 상태를 유지하면서 업데이트하는 거라면, $push는 33번째줄 push한거랑 비슷해
-               // Meteor.user().profile.cart를 내가 배열 형태로 저장해두어서 push를 쓰면 배열에 하나씩 올라가
-        'profile.cart': this._id // _id를 배열에 하나씩 push
-      }
-    });
-    alert('장바구니에 등록되었습니다.');
+    if(flag) {
+      alert("이미 장바구니에 담긴 사진입니다.");
+    } else {
+          // 장바구니 업데이트
+      Meteor.users.update({_id: userInfo._id}, {
+        $push: { 
+          'profile.cart': this._id // _id를 배열에 하나씩 push
+        }
+      });
+      alert('장바구니에 등록되었습니다.');
+    }
   },
 
   // 구매하시겠습니까? 에서 나오는 구매하기 버튼
@@ -69,6 +86,11 @@ Template.ex_modalpicture.events({
       Meteor.users.update({_id: userInfo._id}, {
         $set: { // 여기는 기존 상태 유지하면서 profile.cash의 값만 바꾸는거니까 $set 사용
           'profile.cash': parseInt(currentmoney) - parseInt(picturemoney) // parseInt()를 통해서 Integer로 변환해주어야 함!!
+        }
+      });
+      Meteor.users.update({_id: userInfo._id}, {
+        $push: { 
+          'profile.my_pic': this._id // _id를 배열에 하나씩 push
         }
       });
       alert("구매가 완료되었습니다.");

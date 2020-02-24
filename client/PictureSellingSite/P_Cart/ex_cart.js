@@ -23,9 +23,9 @@ Template.ex_cart.helpers({
     // console.log(userInfo?.profile?.cart)
     // console.log("2",Meteor.user())
     // console.log(DB_PIC.find().count())
-    console.log(this)
+    // console.log(this)
     var _id = this+'' // '' 안 붙이면 String 객체 & 붙이면 String 형식!!
-    console.log(DB_PIC.findOne({_id: _id}))
+    // console.log(DB_PIC.findOne({_id: _id}))
     return DB_PIC.findOne({_id: _id}); // cart는 배열로 저장되어 있으므로, 인덱스를 0부터 늘려가면서 각각 요소들의 정보를 전부 뽑아오기 
   },
 
@@ -50,6 +50,7 @@ Template.ex_cart.events({
       var update_cart_session = Session.get('init_cart_session');
       update_cart_session.push($(evt.target).attr('value1')); // value1에는 id를 저장해 두었음
       Session.set('init_cart_session', update_cart_session);
+      console.log(Session.get('init_cart_session'));
 
       // 체크 한 상태일때는 구매할거니까 즉, 장바구니 DB에서 나갈꺼니까 제거
       var update_remove_arr = Session.get('init_remove_arr');
@@ -83,6 +84,8 @@ Template.ex_cart.events({
 
   'click #btn-buyincart': function() { // 이 코드 고쳐야 함!!
     var userInfo = Meteor.user(); // 사용자 정보 가져오기
+    var initcartsession = Session.get('init_cart_session');
+
     Session.get('init_cart_session').forEach(function(_id) {
       userInfo.profile.cart = userInfo.profile.cart.filter(e => e !== _id) //여기에 포함 된 특정 값을 지우고 싶어.
     })
@@ -92,6 +95,14 @@ Template.ex_cart.events({
       }
     })
 
+    for(var i = 0; i < initcartsession.length; i++) {
+      Meteor.users.update({_id: userInfo._id}, {
+        $push: { 
+          'profile.my_pic': Session.get('init_cart_session')[i]
+        }
+      });
+    }
+    Session.set('sum', 0);
     alert('구매를 완료하였습니다.');
   },
   

@@ -55,9 +55,38 @@ Template.ex_uploadpicture.events({
   'click #btn-save-tag': function(){    
     // tag_arr : 처음 배열
     // tag_update : 입력된 태그 값들이 들어가는 업데이트된 배열
+
     var tag_update = Session.get('tag_arr'); // 태그 등록 버튼을 누르면 태그에 Session값 저장. 처음에는 빈 배열
-    tag_update.push($('#inp-tag').val()); // input 값을 가져와서 빈 배열(태그)에 추가(push)
-    Session.set('tag_arr', tag_update); // Session 값을 업데이트
+    
+    // 수도 코드
+    // var flag = false
+    // if flag true { error } else 대입
+
+    // for(var i = 0 ; i<=tag_update.length; i++) {
+    //   if($('#inp-tag').val() === tag_update[i]) {
+    //     alert("태그가 중복됩니다. 다시 입력해주세요.")
+    //     break;
+    //   } else{
+    //     console.log("중복안됨") // 태그 입력되도 빈칸이면 입력 다시 받게 하기
+    //     tag_update.push($('#inp-tag').val()); // input 값을 가져와서 빈 배열(태그)에 추가(push)
+    //     Session.set('tag_arr', tag_update); // Session 값을 업데이트
+    //   }
+    // } => 이거는 판별 문이기 때문에 어떤 판별값을 도출해 내는 역할을 하는거야 따라서 저렇게 하면 안돼
+    //// 판별문이기 때문에 flag를 반환해줘야해 결과문이야 결과 저 for문에서는 겹치는게 있다 혹은 없다라는 것을 도출해 내는게 목적이야
+    //// 따라서 저기에 Session을 넣고 배열을 넣어줬다는건 말이 안돼 ㅇㅋ??
+    //// for문은 판별문!! 겹치는지는 끝까지 돌려봐야 아는거야
+    
+
+
+    if (tag_update.indexOf($('#inp-tag').val()) < 0) {
+      tag_update.push($('#inp-tag').val()); // input 값을 가져와서 빈 배열(태그)에 추가(push)
+      Session.set('tag_arr', tag_update); // Session 값을 업데이트
+    } else {
+      alert('error')
+    }
+
+
+
   },
 
   'click #btn-remove-tag': function(evt) {
@@ -92,6 +121,7 @@ Template.ex_uploadpicture.events({
       price: price,
       place: place,
       introduce: introduce,
+      userID: Meteor.userId(),
       userInfo: Meteor.user().emails[0].address // 사용자 이메일은 바로 저장할 수 밖에 없음...
     });
 

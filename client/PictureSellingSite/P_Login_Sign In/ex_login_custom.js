@@ -84,7 +84,8 @@ Template.ex_login_custom.events({
           name: 'user',
           introduce: 'Hello World!',
           cash: 10000,
-          cart: []
+          cart: [],
+          my_pic: [] // 구매내역DB
         },
       }, function(err) { //사용자 생성 오류 시 처리 콜백 함수
         if (err) {
