@@ -1,4 +1,4 @@
-FlowRouter.template('/ex_navbar', 'ex_navbar');
+FlowRouter.template('/', 'ex_navbar');
 
 Template.ex_navbar.onCreated(function() {
     var _id = FlowRouter.getParam('_id')

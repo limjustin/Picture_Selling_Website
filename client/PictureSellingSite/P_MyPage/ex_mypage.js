@@ -21,5 +21,11 @@ Template.ex_mypage.helpers({
   },
   title: function() {
     return Meteor.user().profile.introduce;
-  }
+  },
+  num_myupload: function() {
+    return DB_PIC.findAll({userID: Meteor.userId()}).length;
+  },
+  num_my_pic: function() {
+    return Meteor.user().profile.my_pic.length;
+  },
 });

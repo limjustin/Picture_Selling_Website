@@ -1,4 +1,4 @@
-FlowRouter.template('/ex_carousel', 'ex_carousel');
+FlowRouter.template('/', 'ex_carousel');
 
 Template.ex_carousel.onRendered(function() {
 

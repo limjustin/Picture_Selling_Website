@@ -76,17 +76,18 @@ Template.ex_uploadpicture.events({
     //// 따라서 저기에 Session을 넣고 배열을 넣어줬다는건 말이 안돼 ㅇㅋ??
     //// for문은 판별문!! 겹치는지는 끝까지 돌려봐야 아는거야
     
-
-
-    if (tag_update.indexOf($('#inp-tag').val()) < 0) {
-      tag_update.push($('#inp-tag').val()); // input 값을 가져와서 빈 배열(태그)에 추가(push)
-      Session.set('tag_arr', tag_update); // Session 값을 업데이트
+    // 빈칸 예외처리 성공
+    if ($('#inp-tag').val() == '') {
+      alert("태그를 입력하세요.");
     } else {
-      alert('error')
+      console.log($('#inp-tag').val())
+      if (tag_update.indexOf($('#inp-tag').val()) < 0) {
+        tag_update.push($('#inp-tag').val()); // input 값을 가져와서 빈 배열(태그)에 추가(push)
+        Session.set('tag_arr', tag_update); // Session 값을 업데이트
+      } else {
+        alert('태그가 중복됩니다.')
+      }
     }
-
-
-
   },
 
   'click #btn-remove-tag': function(evt) {
@@ -111,29 +112,33 @@ Template.ex_uploadpicture.events({
     var place = $('#inp-place').val();
     var introduce = $('#inp-introduce').val();
 
-    var tag_update = Session.get('tag_arr');
-    Session.set('tag_arr', tag_update);
-    DB_PIC.insert({
-      createdAt: new Date(),
-      file_id: file_id,
-      name: name,
-      tags: tag_update, // 최종 tag의 Session을 담는다!!
-      price: price,
-      place: place,
-      introduce: introduce,
-      userID: Meteor.userId(),
-      userInfo: Meteor.user().emails[0].address // 사용자 이메일은 바로 저장할 수 밖에 없음...
-    });
-
-    // 저장 후 화면 정리
-    $('#inp-file').val('');
-    $('#inp-name').val('');
-    $('#inp-tags').val('');
-    $('#inp-price').val('');
-    $('#inp-place').val('');
-    $('#inp-introduce').val('');
-    alert('저장하였습니다.');
-    FlowRouter.go('/ex_carousel')
+    if(name == '' || price == '' || place == '' || introduce == '') {
+      alert("내용을 입력하세요.")
+    } else {
+      var tag_update = Session.get('tag_arr');
+      Session.set('tag_arr', tag_update);
+      DB_PIC.insert({
+        createdAt: new Date(),
+        file_id: file_id,
+        name: name,
+        tags: tag_update, // 최종 tag의 Session을 담는다!!
+        price: price,
+        place: place,
+        introduce: introduce,
+        userID: Meteor.userId(),
+        userInfo: Meteor.user().emails[0].address // 사용자 이메일은 바로 저장할 수 밖에 없음...
+      });
+  
+      // 저장 후 화면 정리
+      $('#inp-file').val('');
+      $('#inp-name').val('');
+      $('#inp-tags').val('');
+      $('#inp-price').val('');
+      $('#inp-place').val('');
+      $('#inp-introduce').val('');
+      alert('저장하였습니다.');
+      FlowRouter.go('/')
+    }
   },
 });
 

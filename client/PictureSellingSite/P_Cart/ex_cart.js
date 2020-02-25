@@ -33,9 +33,11 @@ Template.ex_cart.helpers({
     return DB_FILES.findOne({_id: this.file_id}).link(); // 사진 링크 불러오기.
   },
 
-  cart_number: function(){ // 장바구니 순서
-    return Session.get('cart_number');
-  },
+  // cart_number: function(){ // 장바구니 순서
+  //   var b = Session.get('cart_number');
+  //   Session.set('cart_number', b+1);
+  //   return Session.get('cart_number');
+  // },
 
   sum: function() { // checkbox 선택한 것들의 합을 return 하는 함수
     return Session.get('sum');
@@ -85,25 +87,31 @@ Template.ex_cart.events({
   'click #btn-buyincart': function() { // 이 코드 고쳐야 함!!
     var userInfo = Meteor.user(); // 사용자 정보 가져오기
     var initcartsession = Session.get('init_cart_session');
-
-    Session.get('init_cart_session').forEach(function(_id) {
-      userInfo.profile.cart = userInfo.profile.cart.filter(e => e !== _id) //여기에 포함 된 특정 값을 지우고 싶어.
-    })
-    Meteor.users.update({_id: userInfo._id}, {
-      $set: {
-        'profile.cart': userInfo.profile.cart
-      }
-    })
-
-    for(var i = 0; i < initcartsession.length; i++) {
-      Meteor.users.update({_id: userInfo._id}, {
-        $push: { 
-          'profile.my_pic': Session.get('init_cart_session')[i]
-        }
-      });
-    }
+    
     Session.set('sum', 0);
-    alert('구매를 완료하였습니다.');
+
+    // 어차피 아무것도 안넣어도 구매내역 DB에 안 들어갈거임
+    if(Session.get('init_cart_session').length <= 0) {
+      alert('사진을 선택하십시오.');
+    } else {
+      Session.get('init_cart_session').forEach(function(_id) {
+        userInfo.profile.cart = userInfo.profile.cart.filter(e => e !== _id) //여기에 포함 된 특정 값을 지우고 싶어.
+      })
+      Meteor.users.update({_id: userInfo._id}, {
+        $set: {
+          'profile.cart': userInfo.profile.cart
+        }
+      })
+  
+      for(var i = 0; i < initcartsession.length; i++) {
+        Meteor.users.update({_id: userInfo._id}, {
+          $push: { 
+            'profile.my_pic': Session.get('init_cart_session')[i]
+          }
+        });
+      }
+      alert('구매를 완료하였습니다.');
+    }
   },
   
   
