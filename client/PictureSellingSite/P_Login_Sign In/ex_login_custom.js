@@ -83,7 +83,7 @@ Template.ex_login_custom.events({
           profile_picture: 'default',
           name: 'user',
           introduce: 'Hello World!',
-          cash: 10000,
+          cash: 100,
           cart: [],
           my_pic: [] // 구매내역DB
         },
