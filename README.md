@@ -32,7 +32,7 @@ https://github.com/limjustin/Picture_Selling_Website
 - 검색 기능
 
 ![pic3](https://user-images.githubusercontent.com/55044278/93103190-4b559680-f6e7-11ea-8c3d-a21d7379b066.png)
-- 데이터베이스에서 해당하는 태그와 일치하는 사진들을 찾아와 보여주는 기능
+- **데이터베이스에서 해당하는 태그와 일치하는 사진들을 찾아와 보여주는 기능**
 
 ![pic4](https://user-images.githubusercontent.com/55044278/93103192-4bee2d00-f6e7-11ea-8dd2-67ab444974c6.png)
 - 사진 팝업창 미리보기 기능
