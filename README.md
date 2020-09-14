@@ -1,6 +1,6 @@
 # Introduction
 
-**Meteor 멘토링 학습**
+**Meteor 멘토링  학습**
 
 https://github.com/codeasy-org/codeasy
 
