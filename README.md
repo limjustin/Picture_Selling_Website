@@ -1,6 +1,6 @@
 # Introduction
 
-**Meteor 멘토링 사전 학습 및 환경 **
+**Meteor 멘토링 사전 학습 및 환경 세팅**
 
 https://github.com/codeasy-org/codeasy
 
