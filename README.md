@@ -8,7 +8,7 @@ https://github.com/codeasy-org/codeasy
 
 https://github.com/limjustin/Picture_Selling_Website
 
-
+<br/>
 
 # Role
 
@@ -17,7 +17,7 @@ https://github.com/limjustin/Picture_Selling_Website
 | [YOUNGSEO(김영서)](https://github.com/youngseo0526) | 메인 코더 &#128081;<br/> Front-End 개발 담당 |              사이트의 전체적인 UI 구성 및 구현               |
 |  [limjustin(임재영)](https://github.com/limjustin)  |  메인 코더 &#128081;<br/>Back-End 개발 담당  | MongoDB, Session 처리와 관련된 데이터 관리<br/>데이터 예외 처리 및 버그 수정 |
 
-
+<br/>
 
 # Website
 
