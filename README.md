@@ -29,13 +29,13 @@ https://github.com/limjustin/Picture_Selling_Website
 
 2. **메인 화면**
 
-- 검색 기능
+- **검색 기능**
 
 ![pic3](https://user-images.githubusercontent.com/55044278/93103190-4b559680-f6e7-11ea-8c3d-a21d7379b066.png)
 - **데이터베이스에서 해당하는 태그와 일치하는 사진들을 찾아와 보여주는 기능**
 
 ![pic4](https://user-images.githubusercontent.com/55044278/93103192-4bee2d00-f6e7-11ea-8dd2-67ab444974c6.png)
-- 사진 팝업창 미리보기 기능
+- **사진 팝업창 미리보기 기능**
 
 ![pic5](https://user-images.githubusercontent.com/55044278/93103195-4c86c380-f6e7-11ea-9534-bc7867362122.png)
 
@@ -57,15 +57,15 @@ https://github.com/limjustin/Picture_Selling_Website
 
 5. **마이페이지 화면**
 
-- 자신이 업로드한 사진 수와 구매한 사진 수를 볼 수 있는 기능
+- **자신이 업로드한 사진 수와 구매한 사진 수를 볼 수 있는 기능**
 
 ![pic7](https://user-images.githubusercontent.com/55044278/93103203-4d1f5a00-f6e7-11ea-948e-a9ff9a0f013d.png)
 
-- 갤러리 형식으로 히스토리 보여주는 기능
+- **갤러리 형식으로 히스토리 보여주는 기능**
 
 ![pic8](https://user-images.githubusercontent.com/55044278/93103204-4db7f080-f6e7-11ea-9365-522e81af811a.png)
 
-- 사용자 정보 수정 기능
+- **사용자 정보 수정 기능**
 
 ![pic9](https://user-images.githubusercontent.com/55044278/93103205-4e508700-f6e7-11ea-875c-a7e34868128a.png)
 
