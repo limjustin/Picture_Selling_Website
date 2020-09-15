@@ -22,6 +22,7 @@ https://github.com/limjustin/Picture_Selling_Website
 # Website
 
 1. **로그인 및 회원가입 화면**
+
 ![pic1](https://user-images.githubusercontent.com/55044278/93103188-4abd0000-f6e7-11ea-8a48-a4b75465ba24.png)
 ![pic2](https://user-images.githubusercontent.com/55044278/93103185-4a246980-f6e7-11ea-84f4-8632616a6c4d.png)
 
